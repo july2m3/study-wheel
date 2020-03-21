@@ -29,29 +29,32 @@ class App extends React.Component<any, any> {
         option4: 'Blog',
       },
       c: HTMLCanvasElement,
+      test : '',
     };
     this.updateAppOptions = this.updateAppOptions.bind(this);
   }
 
   componentDidMount() {
-    // this.state.canvas = document.querySelector('.canvas');
-    // this.state.ctx = this.state.canvas.getContext('2d');
-    // this.state.canvas.width = window.innerWidth - 100;
-    // this.state.canvas.height = window.innerHeight - 100;
+      this.draw();
+  }
 
+  draw() {
     let canvas = document.querySelector('canvas');
     let ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth - 100;
     canvas.height = window.innerHeight - 100;
 
     drawWheel(ctx);
-    // drawPicker(this.state.c, ctx);
     drawPicker(canvas, ctx);
     drawOptions(canvas, ctx, Object.values(this.state.options));
   }
 
   updateAppOptions(optionName, optionValue) {
-    this.setState({ [optionName]: optionValue });
+      let data = this.state.options;
+      data[optionName] = optionValue;
+
+      this.setState( () => ({options : data}));
+      this.draw();
   }
 
   render() {

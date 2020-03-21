@@ -11,7 +11,9 @@ class Form extends React.Component<any, any> {
 
   handleSubmit = (e: any) => {
     e.preventDefault();
+    console.log("here");
     for (let option in this.state) {
+        console.log("now here");
       //   console.log(`Option ${option} is ${this.state[option]}`);
       // console.log(this.state[option]);
       this.props.updateApp(option, this.state[option]);
@@ -38,7 +40,7 @@ class Form extends React.Component<any, any> {
             <input
               type="text"
               name="option1"
-              value={this.props.optionsArray.option1}
+              placeholder={this.props.optionsArray.option1}
               onChange={this.handleInputChange}
             />
           </li>
@@ -47,7 +49,7 @@ class Form extends React.Component<any, any> {
             <input
               type="text"
               name="option2"
-              value={this.props.optionsArray.option2}
+              placeholder={this.props.optionsArray.option2}
               onChange={this.handleInputChange}
             />
           </li>
@@ -56,7 +58,7 @@ class Form extends React.Component<any, any> {
             <input
               type="text"
               name="option3"
-              value={this.props.optionsArray.option3}
+              placeholder={this.props.optionsArray.option3}
               onChange={this.handleInputChange}
             />
           </li>
@@ -65,7 +67,7 @@ class Form extends React.Component<any, any> {
             <input
               type="text"
               name="option4"
-              value={this.props.optionsArray.option4}
+              placeholder={this.props.optionsArray.option4}
               onChange={this.handleInputChange}
             />
           </li>
