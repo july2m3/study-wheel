@@ -4,22 +4,13 @@ import React from 'react';
 class Form extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    this.state = {
-      option1: 'one',
-      option2: '2',
-      option3: 'three',
-      option4: 'four',
-    };
+    this.state = {};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  componentDidMount() {}
-
   handleSubmit = (e: any) => {
     e.preventDefault();
-    let options = {};
-    // this.state.forEach((option: string) => {
     for (let option in this.state) {
       //   console.log(`Option ${option} is ${this.state[option]}`);
       // console.log(this.state[option]);
@@ -47,7 +38,7 @@ class Form extends React.Component<any, any> {
             <input
               type="text"
               name="option1"
-              value={this.state.option1}
+              value={this.props.optionsArray.option1}
               onChange={this.handleInputChange}
             />
           </li>
@@ -56,7 +47,7 @@ class Form extends React.Component<any, any> {
             <input
               type="text"
               name="option2"
-              value={this.state.option2}
+              value={this.props.optionsArray.option2}
               onChange={this.handleInputChange}
             />
           </li>
@@ -65,7 +56,7 @@ class Form extends React.Component<any, any> {
             <input
               type="text"
               name="option3"
-              value={this.state.option3}
+              value={this.props.optionsArray.option3}
               onChange={this.handleInputChange}
             />
           </li>
@@ -74,7 +65,7 @@ class Form extends React.Component<any, any> {
             <input
               type="text"
               name="option4"
-              value={this.state.option4}
+              value={this.props.optionsArray.option4}
               onChange={this.handleInputChange}
             />
           </li>

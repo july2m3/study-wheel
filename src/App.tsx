@@ -22,7 +22,12 @@ class App extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      options: ['React', 'Javascript', 'CSS', 'Personal Project'],
+      options: {
+        option1: 'React',
+        option2: 'JS',
+        option3: 'CSS',
+        option4: 'Blog',
+      },
       c: HTMLCanvasElement,
     };
     this.updateAppOptions = this.updateAppOptions.bind(this);
@@ -40,9 +45,9 @@ class App extends React.Component<any, any> {
     canvas.height = window.innerHeight - 100;
 
     drawWheel(ctx);
-    drawPicker(this.state.c, ctx);
-    // drawPicker(canvas, ctx);
-    drawOptions(canvas, ctx, this.state.options);
+    // drawPicker(this.state.c, ctx);
+    drawPicker(canvas, ctx);
+    drawOptions(canvas, ctx, Object.values(this.state.options));
   }
 
   updateAppOptions(optionName, optionValue) {
@@ -58,8 +63,8 @@ class App extends React.Component<any, any> {
             <FontAwesomeIcon icon={faBars} />
           </Collapse>
           <Form
-            options={this.state.options}
             updateApp={this.updateAppOptions}
+            optionsArray={this.state.options}
           />
         </div>
         <div
@@ -67,7 +72,7 @@ class App extends React.Component<any, any> {
           onClick={() => {
             let canvas = document.querySelector('canvas');
             let ctx = canvas.getContext('2d');
-            spinWheel(canvas, ctx, this.state.options);
+            spinWheel(canvas, ctx, Object.values(this.state.options));
           }}
         >
           <canvas className="canvas" />
