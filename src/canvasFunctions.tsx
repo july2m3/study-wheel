@@ -4,6 +4,7 @@ export const drawWheel = ctx => {
   let y = (window.innerHeight - 100) / 2;
   let size = y;
 
+  ctx.strokeStyle = '#00FF80';
   ctx.arc(x, y, size, 0, Math.PI * 2, true);
   ctx.stroke();
 };
@@ -13,6 +14,9 @@ export const drawPicker = (canvas, ctx) => {
   let x = (canvas.width - 100) / 2 + (window.innerHeight - 100) / 2 + 50;
   let y = canvas.height / 2 - 5;
 
+
+  //ctx.strokeStyle = '#00FF80';
+  ctx.FillStyle = '#00FF80';
   ctx.moveTo(x, y);
   ctx.lineTo(x + 25, y + 25);
   ctx.lineTo(x + 25, y - 25);
@@ -29,6 +33,8 @@ export const drawLines = (canvas, ctx, angle1 = 30, angle2 = 60) => {
   angle1 = (-1 * angle1 * Math.PI) / 180;
   let circleX = x + r * Math.cos(angle1);
   let circleY = y + r * Math.sin(angle1);
+
+  ctx.strokeStyle = '#00FF80';
   ctx.beginPath();
   ctx.moveTo(x, y);
   ctx.lineTo(circleX, circleY);
@@ -37,6 +43,8 @@ export const drawLines = (canvas, ctx, angle1 = 30, angle2 = 60) => {
   angle2 = (-1 * angle2 * Math.PI) / 180;
   circleX = x + r * Math.cos(angle2);
   circleY = y + r * Math.sin(angle2);
+
+  ctx.strokeStyle = '#00FF80';
   ctx.beginPath();
   ctx.moveTo(x, y);
   ctx.lineTo(circleX, circleY);
@@ -53,6 +61,7 @@ export const drawText = (
   let x = canvas.width / 2;
   let y = canvas.height / 2;
 
+  ctx.fillStyle = '#00FF80';
   ctx.font = '24px serif';
   ctx.save();
   ctx.translate(x, y);

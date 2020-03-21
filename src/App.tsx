@@ -23,10 +23,10 @@ class App extends React.Component<any, any> {
     super(props);
     this.state = {
       options: {
-        option1: 'React',
-        option2: 'JS',
-        option3: 'CSS',
-        option4: 'Blog',
+        option1: 'React Practice',
+        option2: 'JS Practice',
+        option3: 'CSS Practice',
+        option4: 'Personal Project',
       },
       c: HTMLCanvasElement,
       test : '',
@@ -36,7 +36,20 @@ class App extends React.Component<any, any> {
 
   componentDidMount() {
       this.draw();
+      document.addEventListener("keydown", this.handleKeyDown);
   }
+
+
+  handleKeyDown = (event) => {
+ 
+    switch( event.keyCode ) {
+        case 32://space key
+        this.spinWheel();
+            break;
+        default: 
+            break;
+    }
+}
 
   draw() {
     let canvas = document.querySelector('canvas');
@@ -57,6 +70,12 @@ class App extends React.Component<any, any> {
       this.draw();
   }
 
+  spinWheel() {
+            let canvas = document.querySelector('canvas');
+            let ctx = canvas.getContext('2d');
+            spinWheel(canvas, ctx, Object.values(this.state.options));
+  }
+
   render() {
     return (
       <>
@@ -72,11 +91,7 @@ class App extends React.Component<any, any> {
         </div>
         <div
           className="canvas-holder"
-          onClick={() => {
-            let canvas = document.querySelector('canvas');
-            let ctx = canvas.getContext('2d');
-            spinWheel(canvas, ctx, Object.values(this.state.options));
-          }}
+          onClick={this.spinWheel}
         >
           <canvas className="canvas" />
         </div>
