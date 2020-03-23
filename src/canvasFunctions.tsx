@@ -14,8 +14,6 @@ export const drawPicker = (canvas, ctx) => {
   let x = (canvas.width - 100) / 2 + (window.innerHeight - 100) / 2 + 50;
   let y = canvas.height / 2 - 5;
 
-
-  //ctx.strokeStyle = '#00FF80';
   ctx.FillStyle = '#00FF80';
   ctx.moveTo(x, y);
   ctx.lineTo(x + 25, y + 25);
@@ -106,12 +104,3 @@ export const drawOptions = (canvas, ctx, options, startAngle = 0) => {
     j++;
   }
 };
-
-//setup
-// drawWheel();
-// drawPicker();
-// drawOptions();
-
-// canvas.addEventListener('click', () => {
-//   rotateWheel();
-// });

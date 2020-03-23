@@ -1,6 +1,5 @@
 import React from 'react';
 
-// function Form() {
 class Form extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -11,11 +10,7 @@ class Form extends React.Component<any, any> {
 
   handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("here");
     for (let option in this.state) {
-        console.log("now here");
-      //   console.log(`Option ${option} is ${this.state[option]}`);
-      // console.log(this.state[option]);
       this.props.updateApp(option, this.state[option]);
     }
   };
@@ -32,7 +27,7 @@ class Form extends React.Component<any, any> {
 
   render() {
     return (
-      <form className="form hide" id="form">
+      <form className="form" id="form">
         <p>Study List</p>
         <ul>
           <li>

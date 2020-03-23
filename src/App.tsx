@@ -4,7 +4,6 @@ import Collapse from './Collapse';
 import Title from './Title';
 import Form from './Form';
 
-// import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -17,7 +16,6 @@ import {
   spinWheel,
 } from './canvasFunctions';
 
-// function App() {
 class App extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
