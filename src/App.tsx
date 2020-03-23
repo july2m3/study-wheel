@@ -29,27 +29,26 @@ class App extends React.Component<any, any> {
         option4: 'Personal Project',
       },
       c: HTMLCanvasElement,
-      test : '',
+      test: '',
     };
     this.updateAppOptions = this.updateAppOptions.bind(this);
   }
 
   componentDidMount() {
-      this.draw();
-      document.addEventListener("keydown", this.handleKeyDown);
+    this.draw();
+    document.addEventListener('keydown', this.handleKeyDown);
   }
 
-
-  handleKeyDown = (event) => {
- 
-    switch( event.keyCode ) {
-        case 32://space key
+  handleKeyDown = event => {
+    switch (event.keyCode) {
+      case 32: //space key
         this.spinWheel();
-            break;
-        default: 
-            break;
+        console.log('spinning wheel');
+        break;
+      default:
+        break;
     }
-}
+  };
 
   draw() {
     let canvas = document.querySelector('canvas');
@@ -63,17 +62,17 @@ class App extends React.Component<any, any> {
   }
 
   updateAppOptions(optionName, optionValue) {
-      let data = this.state.options;
-      data[optionName] = optionValue;
+    let data = this.state.options;
+    data[optionName] = optionValue;
 
-      this.setState( () => ({options : data}));
-      this.draw();
+    this.setState(() => ({ options: data }));
+    this.draw();
   }
 
   spinWheel() {
-            let canvas = document.querySelector('canvas');
-            let ctx = canvas.getContext('2d');
-            spinWheel(canvas, ctx, Object.values(this.state.options));
+    let canvas = document.querySelector('canvas');
+    let ctx = canvas.getContext('2d');
+    spinWheel(canvas, ctx, Object.values(this.state.options));
   }
 
   render() {
@@ -89,10 +88,7 @@ class App extends React.Component<any, any> {
             optionsArray={this.state.options}
           />
         </div>
-        <div
-          className="canvas-holder"
-          onClick={this.spinWheel}
-        >
+        <div className="canvas-holder" onClick={this.spinWheel}>
           <canvas className="canvas" />
         </div>
       </>
