@@ -37,7 +37,7 @@ class App extends React.Component<any, any> {
     document.addEventListener('keydown', this.handleKeyDown);
   }
 
-  handleKeyDown = event => {
+  handleKeyDown = (event: KeyboardEvent) => {
     switch (event.keyCode) {
       case 32: //space key
         this.spinWheel();
@@ -59,7 +59,7 @@ class App extends React.Component<any, any> {
     drawOptions(canvas, ctx, Object.values(this.state.options));
   }
 
-  updateAppOptions(optionName, optionValue) {
+  updateAppOptions(optionName: string, optionValue: string) {
     let data = this.state.options;
     data[optionName] = optionValue;
 

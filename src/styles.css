@@ -5,6 +5,7 @@
 }
 
 :root {
+  --bg: #333;
   --rainbow: linear-gradient(
     to right,
     red,
@@ -24,6 +25,10 @@
   align-items: center;
 }
 
+body {
+  background-color: var(--bg);
+}
+
 .title {
   height: 100px;
   width: 100%;
@@ -39,7 +44,6 @@
 
 .options-menu {
   align-self: flex-start;
-  background-color: white;
   color: black;
   top: 0;
   padding: 5px;
@@ -56,15 +60,15 @@ ul {
 }
 
 .fa-bars {
+  display: inline;
   margin: 10px;
   font-size: 2rem;
-  display: inline;
 }
 
 .form {
-  width: 300px;
-  /* display: none; */
+  padding-top: 50px;
   height: 800px;
+  width: 300px;
 }
 
 .hide {

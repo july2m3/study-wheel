@@ -27,7 +27,7 @@ class Form extends React.Component<any, any> {
 
   render() {
     return (
-      <form className="form" id="form">
+      <form className="form hide" id="form">
         <p>Study List</p>
         <ul>
           <li>
