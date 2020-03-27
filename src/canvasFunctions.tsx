@@ -1,4 +1,4 @@
-export const drawWheel = ctx => {
+export const drawWheel = (ctx: CanvasRenderingContext2D) => {
   ctx.beginPath();
   let x = (window.innerWidth - 100) / 2;
   let y = (window.innerHeight - 100) / 2;
@@ -9,12 +9,15 @@ export const drawWheel = ctx => {
   ctx.stroke();
 };
 
-export const drawPicker = (canvas, ctx) => {
+export const drawPicker = (
+  canvas: HTMLCanvasElement,
+  ctx: CanvasRenderingContext2D,
+) => {
   ctx.beginPath();
   let x = (canvas.width - 100) / 2 + (window.innerHeight - 100) / 2 + 50;
   let y = canvas.height / 2 - 5;
 
-  ctx.FillStyle = '#00FF80';
+  ctx.fillStyle = '#00FF80';
   ctx.moveTo(x, y);
   ctx.lineTo(x + 25, y + 25);
   ctx.lineTo(x + 25, y - 25);
@@ -23,7 +26,12 @@ export const drawPicker = (canvas, ctx) => {
 
 //calculate the circles points based on end angle
 // see https://stackoverflow.com/questions/5300938/calculating-the-position-of-points-in-a-circle
-export const drawLines = (canvas, ctx, angle1 = 30, angle2 = 60) => {
+export const drawLines = (
+  canvas: HTMLCanvasElement,
+  ctx: CanvasRenderingContext2D,
+  angle1 = 30,
+  angle2 = 60,
+) => {
   let x = canvas.width / 2;
   let y = canvas.height / 2;
   let r = y;
@@ -50,8 +58,8 @@ export const drawLines = (canvas, ctx, angle1 = 30, angle2 = 60) => {
 };
 
 export const drawText = (
-  canvas,
-  ctx,
+  canvas: HTMLCanvasElement,
+  ctx: CanvasRenderingContext2D,
   text = 'hello',
   labelX = 0,
   angle = 0,
@@ -69,10 +77,14 @@ export const drawText = (
   ctx.restore();
 };
 
-export const spinWheel = (canvas, ctx, options) => {
+export const spinWheel = (
+  canvas: HTMLCanvasElement,
+  ctx: CanvasRenderingContext2D,
+  options: Array<string>,
+) => {
   let angle = 0;
   let spins = Math.random() * 1000 + 3000;
-  let wheelSpin;
+  let wheelSpin: NodeJS.Timeout;
 
   setTimeout(() => {
     clearInterval(wheelSpin);
@@ -90,7 +102,12 @@ export const spinWheel = (canvas, ctx, options) => {
   }, 10);
 };
 
-export const drawOptions = (canvas, ctx, options, startAngle = 0) => {
+export const drawOptions = (
+  canvas: HTMLCanvasElement,
+  ctx: CanvasRenderingContext2D,
+  options: Array<string>,
+  startAngle = 0,
+) => {
   let j = 0;
   let angle = Math.trunc(360 / options.length);
   let currentAngle = startAngle;
@@ -104,3 +121,4 @@ export const drawOptions = (canvas, ctx, options, startAngle = 0) => {
     j++;
   }
 };
+

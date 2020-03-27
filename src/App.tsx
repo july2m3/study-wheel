@@ -70,7 +70,9 @@ class App extends React.Component<any, any> {
   spinWheel() {
     let canvas = document.querySelector('canvas');
     let ctx = canvas.getContext('2d');
-    spinWheel(canvas, ctx, Object.values(this.state.options));
+    if (this) {
+      spinWheel(canvas, ctx, Object.values(this.state.options));
+    }
   }
 
   render() {
