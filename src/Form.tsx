@@ -36,7 +36,6 @@ class Form extends React.Component<any, any> {
           <p>Study List</p>
           <ul>
             <li>
-              <label>Option 1</label>
               <input
                 type="text"
                 name="option1"
@@ -45,7 +44,6 @@ class Form extends React.Component<any, any> {
               />
             </li>
             <li>
-              <label>Option 2</label>
               <input
                 type="text"
                 name="option2"
@@ -54,7 +52,6 @@ class Form extends React.Component<any, any> {
               />
             </li>
             <li>
-              <label>Option 3</label>
               <input
                 type="text"
                 name="option3"
@@ -63,7 +60,6 @@ class Form extends React.Component<any, any> {
               />
             </li>
             <li>
-              <label>Option 4</label>
               <input
                 type="text"
                 name="option4"
