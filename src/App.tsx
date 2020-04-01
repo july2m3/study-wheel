@@ -37,6 +37,19 @@ class App extends React.Component<any, any> {
     document.addEventListener('keydown', this.handleKeyDown);
   }
 
+  addOption = (e: any) => {
+    e.preventDefault();
+    console.log('you did it now!!!');
+    this.setState(() => ({
+      options: {
+        ...this.state.options,
+        option6: 'dd',
+      },
+    }));
+
+    setTimeout(this.draw, 100);
+  };
+
   handleKeyDown = (event: KeyboardEvent) => {
     switch (event.keyCode) {
       case 32: //space key
@@ -48,7 +61,8 @@ class App extends React.Component<any, any> {
     }
   };
 
-  draw() {
+  draw = () => {
+    console.log('redrawing');
     let canvas = document.querySelector('canvas');
     let ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth - 100;
@@ -57,7 +71,7 @@ class App extends React.Component<any, any> {
     drawWheel(ctx);
     drawPicker(canvas, ctx);
     drawOptions(canvas, ctx, Object.values(this.state.options));
-  }
+  };
 
   updateAppOptions(optionName: string, optionValue: string) {
     let data = this.state.options;
@@ -86,6 +100,7 @@ class App extends React.Component<any, any> {
           <Form
             updateApp={this.updateAppOptions}
             optionsArray={this.state.options}
+            addOption={this.addOption}
           />
         </div>
         <div className="canvas-holder" onClick={this.spinWheel}>
