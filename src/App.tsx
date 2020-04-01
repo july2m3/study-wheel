@@ -20,12 +20,12 @@ class App extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      options: {
-        option1: 'React Practice',
-        option2: 'JS Practice',
-        option3: 'CSS Practice',
-        option4: 'Personal Project',
-      },
+      options: [
+        'React Practice',
+        'JS Practice',
+        'CSS Practice',
+        'Personal Project',
+      ],
       c: HTMLCanvasElement,
       test: '',
     };
@@ -41,10 +41,7 @@ class App extends React.Component<any, any> {
     e.preventDefault();
     console.log('you did it now!!!');
     this.setState(() => ({
-      options: {
-        ...this.state.options,
-        option6: 'dd',
-      },
+      options: [...this.state.options, 'dd'],
     }));
 
     setTimeout(this.draw, 100);
@@ -73,21 +70,21 @@ class App extends React.Component<any, any> {
     drawOptions(canvas, ctx, Object.values(this.state.options));
   };
 
-  updateAppOptions(optionName: string, optionValue: string) {
+  updateAppOptions = (optionName: string, optionValue: string) => {
     let data = this.state.options;
     data[optionName] = optionValue;
 
     this.setState(() => ({ options: data }));
     this.draw();
-  }
+  };
 
-  spinWheel() {
+  spinWheel = () => {
     let canvas = document.querySelector('canvas');
     let ctx = canvas.getContext('2d');
     if (this) {
       spinWheel(canvas, ctx, Object.values(this.state.options));
     }
-  }
+  };
 
   render() {
     return (

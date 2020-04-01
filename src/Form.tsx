@@ -27,6 +27,8 @@ class Form extends React.Component<any, any> {
     this.setState({
       [name]: value,
     });
+
+    console.log(this.props.optionsArray);
   };
 
   render() {
@@ -35,38 +37,10 @@ class Form extends React.Component<any, any> {
         <form className="form hide" id="form">
           <p>Study List</p>
           <ul>
-            <li>
-              <input
-                type="text"
-                name="option1"
-                placeholder={this.props.optionsArray.option1}
-                onChange={this.handleInputChange}
-              />
-            </li>
-            <li>
-              <input
-                type="text"
-                name="option2"
-                placeholder={this.props.optionsArray.option2}
-                onChange={this.handleInputChange}
-              />
-            </li>
-            <li>
-              <input
-                type="text"
-                name="option3"
-                placeholder={this.props.optionsArray.option3}
-                onChange={this.handleInputChange}
-              />
-            </li>
-            <li>
-              <input
-                type="text"
-                name="option4"
-                placeholder={this.props.optionsArray.option4}
-                onChange={this.handleInputChange}
-              />
-            </li>
+            {this.props.optionsArray.map((option, index) => {
+              // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+              return <FormItem option={option} key={index} />;
+            })}
           </ul>
 
           <button className="add-option-button" onClick={this.props.addOption}>

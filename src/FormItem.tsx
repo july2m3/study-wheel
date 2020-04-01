@@ -1,12 +1,13 @@
 import React from 'react';
 
-function FormItem(props: any) {
+function FormItem(props) {
   return (
     <li>
       <input
         type="text"
-        placeholder={this.props.option}
-        onChange={this.props.handleInputChange}
+        name={props.option}
+        placeholder={props.option}
+        // onChange={this.props.handleInputChange}
       />
     </li>
   );
