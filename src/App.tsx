@@ -20,12 +20,7 @@ class App extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      options: [
-        'React Practice',
-        'JS Practice',
-        'CSS Practice',
-        'Personal Project',
-      ],
+      options: ['HTML/CSS', 'Vanilla JS', 'React', 'Node', 'Hackerrank'],
       colors: ['#3FB8AF', '#7FC7AF', '#DAD8A7', '#FF9E9D', '#FF3D7F'],
       colorOptions: [],
       test: '',
