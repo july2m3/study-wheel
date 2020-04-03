@@ -5,7 +5,7 @@ function FormItem(props) {
     <li>
       <input
         type="text"
-        name={props.option}
+        name={props.name}
         placeholder={props.option}
         // onChange={this.props.handleInputChange}
       />

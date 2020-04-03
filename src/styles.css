@@ -5,7 +5,8 @@
 }
 
 :root {
-  --bg: #333;
+  /* --bg: #131720; */
+  --bg: #2a2c2b;
   --rainbow: linear-gradient(
     to right,
     red,
@@ -23,6 +24,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: white;
 }
 
 body {
@@ -32,23 +34,19 @@ body {
 .title {
   height: 100px;
   width: 100%;
-  background-image: var(--rainbow, pink);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 3rem;
-  color: gold;
-  text-shadow: 2px 2px 4px gold;
   margin-bottom: 20px;
 }
 
 .options-menu {
   align-self: flex-start;
-  color: black;
   top: 0;
   padding: 5px;
   position: fixed;
-  border-right: 1px solid black;
+  border-right: 1px solid #888888;
 }
 
 .collapse {
@@ -76,7 +74,6 @@ ul {
 }
 
 p {
-  color: gold;
   font-size: 1.5rem;
 }
 

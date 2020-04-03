@@ -26,22 +26,40 @@ class App extends React.Component<any, any> {
         'CSS Practice',
         'Personal Project',
       ],
-      c: HTMLCanvasElement,
+      colors: ['#3FB8AF', '#7FC7AF', '#DAD8A7', '#FF9E9D', '#FF3D7F'],
+      colorOptions: [],
       test: '',
     };
     this.updateAppOptions = this.updateAppOptions.bind(this);
   }
 
   componentDidMount() {
-    this.draw();
     document.addEventListener('keydown', this.handleKeyDown);
+
+    //color pallette from here https://codepen.io/dropside/pen/KkLaH
+    let colorArray = [];
+    let newColor = '';
+
+    for (let i = 0; i < this.state.options.length; i++) {
+      newColor = this.state.colors[
+        Math.floor(Math.random() * this.state.colors.length)
+      ];
+      colorArray.push(newColor);
+    }
+
+    this.setState(() => ({ colorOptions: colorArray }));
   }
 
+  //if options are updated, redraw the canvas
+  componentDidUpdate() {
+    this.draw();
+  }
+
+  //add a new option on to state and wheel
   addOption = (e: any) => {
     e.preventDefault();
-    console.log('you did it now!!!');
     this.setState(() => ({
-      options: [...this.state.options, 'dd'],
+      options: [...this.state.options, 'take a break'],
     }));
 
     setTimeout(this.draw, 100);
@@ -58,6 +76,7 @@ class App extends React.Component<any, any> {
     }
   };
 
+  //redraw the wheel, options, and picker
   draw = () => {
     console.log('redrawing');
     let canvas = document.querySelector('canvas');
@@ -67,7 +86,12 @@ class App extends React.Component<any, any> {
 
     drawWheel(ctx);
     drawPicker(canvas, ctx);
-    drawOptions(canvas, ctx, Object.values(this.state.options));
+    drawOptions(
+      canvas,
+      ctx,
+      Object.values(this.state.options),
+      this.state.colors,
+    );
   };
 
   updateAppOptions = (optionName: string, optionValue: string) => {
@@ -78,12 +102,34 @@ class App extends React.Component<any, any> {
     this.draw();
   };
 
+  //redraws the wheel to make it appear to spin a minimum of 3+ seconds
   spinWheel = () => {
     let canvas = document.querySelector('canvas');
     let ctx = canvas.getContext('2d');
     if (this) {
-      spinWheel(canvas, ctx, Object.values(this.state.options));
+      spinWheel(
+        canvas,
+        ctx,
+        Object.values(this.state.options),
+        this.state.colors,
+      );
     }
+  };
+
+  //handle submission of form component to update options
+  handleFormSubmit = (e: any) => {
+    e.preventDefault();
+    const form = document.querySelector('form');
+    const formData = new FormData(form);
+
+    let updatedOptions = [];
+
+    for (let i = 0; i < this.state.options.length; i++) {
+      updatedOptions.push(formData.get(i.toString()));
+    }
+
+    this.setState(() => ({ options: updatedOptions }));
+    this.draw();
   };
 
   render() {
@@ -98,6 +144,7 @@ class App extends React.Component<any, any> {
             updateApp={this.updateAppOptions}
             optionsArray={this.state.options}
             addOption={this.addOption}
+            handleSubmit={this.handleFormSubmit}
           />
         </div>
         <div className="canvas-holder" onClick={this.spinWheel}>

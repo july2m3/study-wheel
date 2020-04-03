@@ -4,7 +4,7 @@ export const drawWheel = (ctx: CanvasRenderingContext2D) => {
   let y = (window.innerHeight - 100) / 2;
   let size = y;
 
-  ctx.strokeStyle = '#00FF80';
+  ctx.strokeStyle = '#ffffff';
   ctx.arc(x, y, size, 0, Math.PI * 2, true);
   ctx.stroke();
 };
@@ -17,7 +17,7 @@ export const drawPicker = (
   let x = (canvas.width - 100) / 2 + (window.innerHeight - 100) / 2 + 50;
   let y = canvas.height / 2 - 5;
 
-  ctx.fillStyle = '#00FF80';
+  ctx.fillStyle = '#ffffff';
   ctx.moveTo(x, y);
   ctx.lineTo(x + 25, y + 25);
   ctx.lineTo(x + 25, y - 25);
@@ -40,7 +40,7 @@ export const drawLines = (
   let circleX = x + r * Math.cos(angle1);
   let circleY = y + r * Math.sin(angle1);
 
-  ctx.strokeStyle = '#00FF80';
+  ctx.strokeStyle = '#ffffff';
   ctx.beginPath();
   ctx.moveTo(x, y);
   ctx.lineTo(circleX, circleY);
@@ -50,7 +50,7 @@ export const drawLines = (
   circleX = x + r * Math.cos(angle2);
   circleY = y + r * Math.sin(angle2);
 
-  ctx.strokeStyle = '#00FF80';
+  ctx.strokeStyle = '#ffffff';
   ctx.beginPath();
   ctx.moveTo(x, y);
   ctx.lineTo(circleX, circleY);
@@ -63,11 +63,15 @@ export const drawText = (
   text = 'hello',
   labelX = 0,
   angle = 0,
+  color = 'red',
 ) => {
   let x = canvas.width / 2;
   let y = canvas.height / 2;
 
-  ctx.fillStyle = '#00FF80';
+  // let textColor = colors[Math.floor(Math.random() * 5)];
+  // ctx.fillStyle = '#ffffff';
+  ctx.fillStyle = color;
+
   ctx.font = '24px serif';
   ctx.save();
   ctx.translate(x, y);
@@ -81,6 +85,7 @@ export const spinWheel = (
   canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
   options: Array<string>,
+  colors: Array<string>,
 ) => {
   let angle = 0;
   let spins = Math.random() * 1000 + 3000;
@@ -93,7 +98,7 @@ export const spinWheel = (
   wheelSpin = setInterval(() => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawWheel(ctx);
-    drawOptions(canvas, ctx, options, angle);
+    drawOptions(canvas, ctx, options, colors, angle);
     drawPicker(canvas, ctx);
     angle += 5;
     if (angle >= 360) {
@@ -106,6 +111,7 @@ export const drawOptions = (
   canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
   options: Array<string>,
+  colors: Array<string> = [],
   startAngle = 0,
 ) => {
   let j = 0;
@@ -117,8 +123,14 @@ export const drawOptions = (
     oldAngle = currentAngle;
     currentAngle = i * angle + startAngle;
     drawLines(canvas, ctx, oldAngle, currentAngle);
-    drawText(canvas, ctx, options[j], 120, (currentAngle + oldAngle) / 2);
+    drawText(
+      canvas,
+      ctx,
+      options[j],
+      120,
+      (currentAngle + oldAngle) / 2,
+      colors[j],
+    );
     j++;
   }
 };
-

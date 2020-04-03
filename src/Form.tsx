@@ -14,9 +14,16 @@ class Form extends React.Component<any, any> {
 
   handleSubmit = (e: any) => {
     e.preventDefault();
-    for (let option in this.state) {
-      this.props.updateApp(option, this.state[option]);
+    const form = document.querySelector('form');
+    const formData = new FormData(form);
+
+    let updatedOptions = [];
+
+    for (let i = 0; i < this.props.optionsArray.length; i++) {
+      updatedOptions.push(formData.get(i.toString()));
     }
+
+    console.log(updatedOptions);
   };
 
   handleInputChange = (e: any) => {
@@ -39,7 +46,9 @@ class Form extends React.Component<any, any> {
           <ul>
             {this.props.optionsArray.map((option, index) => {
               // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-              return <FormItem option={option} key={index} />;
+              return (
+                <FormItem option={option} name={index.toString()} key={index} />
+              );
             })}
           </ul>
 
@@ -48,7 +57,7 @@ class Form extends React.Component<any, any> {
           </button>
 
           <button
-            onClick={e => this.handleSubmit(e)}
+            onClick={e => this.props.handleSubmit(e)}
             className="submit-button"
             type="submit"
           >
