@@ -45,6 +45,7 @@ class Canvas extends React.Component<any, any> {
 
     if (canvas) {
       const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawWheel(ctx);
       drawPicker(canvas, ctx);
       drawOptions(canvas, ctx, Object.values(options), colors);

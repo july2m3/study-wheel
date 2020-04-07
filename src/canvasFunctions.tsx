@@ -9,6 +9,10 @@ export const drawWheel = (ctx: CanvasRenderingContext2D) => {
   ctx.stroke();
 };
 
+// export const clearCanvas = (ctx: OffscreenCanvasRenderingContext2D) => {
+// ctx.clearRect(0, 0, canvas.width, canvas.height);
+// };
+
 export const drawPicker = (
   canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
