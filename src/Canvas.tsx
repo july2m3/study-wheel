@@ -23,13 +23,15 @@ class Canvas extends React.Component<any, any> {
     canvas.height = window.innerHeight - 100;
     canvas.width = window.innerWidth - 100;
     this.draw(options, colors);
+
+    document.addEventListener('keydown', this.handleKeyDown);
   }
 
   componentDidUpdate({ options, colors } = this.props) {
     this.draw(options, colors);
   }
 
-  handleKeyDown = (event, options, colors) => {
+  handleKeyDown = (event, { options, colors } = this.props) => {
     switch (event.keyCode) {
       case 32: // space key
         this.initialWheelSpin(options, colors);
