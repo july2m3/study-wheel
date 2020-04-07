@@ -1,10 +1,10 @@
 export const drawWheel = (ctx: CanvasRenderingContext2D) => {
   ctx.beginPath();
-  let x = (window.innerWidth - 100) / 2;
-  let y = (window.innerHeight - 100) / 2;
-  let size = y;
+  const x: number = (window.innerWidth - 100) / 2;
+  const y: number = (window.innerHeight - 100) / 2;
+  const size: number = y;
 
-  ctx.strokeStyle = '#ffffff';
+  // ctx.strokeStyle = '#ffffff';
   ctx.arc(x, y, size, 0, Math.PI * 2, true);
   ctx.stroke();
 };
@@ -14,8 +14,9 @@ export const drawPicker = (
   ctx: CanvasRenderingContext2D,
 ) => {
   ctx.beginPath();
-  let x = (canvas.width - 100) / 2 + (window.innerHeight - 100) / 2 + 50;
-  let y = canvas.height / 2 - 5;
+  const x: number =
+    (canvas.width - 100) / 2 + (window.innerHeight - 100) / 2 + 50;
+  const y: number = canvas.height / 2 - 5;
 
   ctx.fillStyle = '#ffffff';
   ctx.moveTo(x, y);
@@ -24,7 +25,7 @@ export const drawPicker = (
   ctx.fill();
 };
 
-//calculate the circles points based on end angle
+//  calculate the circles points based on end angle
 // see https://stackoverflow.com/questions/5300938/calculating-the-position-of-points-in-a-circle
 export const drawLines = (
   canvas: HTMLCanvasElement,
@@ -32,13 +33,13 @@ export const drawLines = (
   angle1 = 30,
   angle2 = 60,
 ) => {
-  let x = canvas.width / 2;
-  let y = canvas.height / 2;
-  let r = y;
+  const x: number = canvas.width / 2;
+  const y: number = canvas.height / 2;
+  const r: number = y;
 
-  angle1 = (-1 * angle1 * Math.PI) / 180;
-  let circleX = x + r * Math.cos(angle1);
-  let circleY = y + r * Math.sin(angle1);
+  const angle1Calculated: number = (-1 * angle1 * Math.PI) / 180;
+  let circleX: number = x + r * Math.cos(angle1Calculated);
+  let circleY: number = y + r * Math.sin(angle1Calculated);
 
   ctx.strokeStyle = '#ffffff';
   ctx.beginPath();
@@ -46,9 +47,9 @@ export const drawLines = (
   ctx.lineTo(circleX, circleY);
   ctx.stroke();
 
-  angle2 = (-1 * angle2 * Math.PI) / 180;
-  circleX = x + r * Math.cos(angle2);
-  circleY = y + r * Math.sin(angle2);
+  const angle2Calculated = (-1 * angle2 * Math.PI) / 180;
+  circleX = x + r * Math.cos(angle2Calculated);
+  circleY = y + r * Math.sin(angle2Calculated);
 
   ctx.strokeStyle = '#ffffff';
   ctx.beginPath();
@@ -65,8 +66,8 @@ export const drawText = (
   angle = 0,
   color = 'red',
 ) => {
-  let x = canvas.width / 2;
-  let y = canvas.height / 2;
+  const x: number = canvas.width / 2;
+  const y: number = canvas.height / 2;
 
   // let textColor = colors[Math.floor(Math.random() * 5)];
   // ctx.fillStyle = '#ffffff';
@@ -81,14 +82,42 @@ export const drawText = (
   ctx.restore();
 };
 
+export const drawOptions = (
+  canvas: HTMLCanvasElement,
+  ctx: CanvasRenderingContext2D,
+  options: Array<string>,
+  colors: Array<string> = [],
+  startAngle = 0,
+) => {
+  let j: number = 0;
+  const angle: number = Math.trunc(360 / options.length);
+  let currentAngle: number = startAngle;
+  let oldAngle: number;
+
+  for (let i = 1; i < options.length + 1; i++) {
+    oldAngle = currentAngle;
+    currentAngle = i * angle + startAngle;
+    drawLines(canvas, ctx, oldAngle, currentAngle);
+    drawText(
+      canvas,
+      ctx,
+      options[j],
+      120,
+      (currentAngle + oldAngle) / 2,
+      colors[j],
+    );
+    j += 1;
+  }
+};
+
 export const spinWheel = (
   canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
   options: Array<string>,
   colors: Array<string>,
 ) => {
-  let angle = 0;
-  let spins = Math.random() * 1000 + 3000;
+  let angle: number = 0;
+  const spins: number = Math.random() * 1000 + 3000;
   let wheelSpin: NodeJS.Timeout;
 
   setTimeout(() => {
@@ -105,32 +134,4 @@ export const spinWheel = (
       angle = 0;
     }
   }, 10);
-};
-
-export const drawOptions = (
-  canvas: HTMLCanvasElement,
-  ctx: CanvasRenderingContext2D,
-  options: Array<string>,
-  colors: Array<string> = [],
-  startAngle = 0,
-) => {
-  let j = 0;
-  let angle = Math.trunc(360 / options.length);
-  let currentAngle = startAngle;
-  let oldAngle: number;
-
-  for (let i = 1; i < options.length + 1; i++) {
-    oldAngle = currentAngle;
-    currentAngle = i * angle + startAngle;
-    drawLines(canvas, ctx, oldAngle, currentAngle);
-    drawText(
-      canvas,
-      ctx,
-      options[j],
-      120,
-      (currentAngle + oldAngle) / 2,
-      colors[j],
-    );
-    j++;
-  }
 };

@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Collapse from './Collapse';
 import Title from './Title';
 import Form from './Form';
+import Canvas from './Canvas';
 
 import './styles.css';
 
@@ -23,14 +24,13 @@ class App extends React.Component<any, any> {
     this.state = {
       options: ['HTML/CSS', 'Vanilla JS', 'React', 'Node', 'Hackerrank'],
       colors: ['#3FB8AF', '#7FC7AF', '#DAD8A7', '#FF9E9D', '#FF3D7F'],
-      colorOptions: [''],
     };
     this.updateAppOptions = this.updateAppOptions.bind(this);
   }
 
   //  set up space bar event handler and color pallete
   componentDidMount({ options, colors } = this.state) {
-    document.addEventListener('keydown', this.handleKeyDown);
+    // document.addEventListener('keydown', this.handleKeyDown);
 
     //  color pallette from here https://codepen.io/dropside/pen/KkLaH
     const colorArray = [];
@@ -41,13 +41,13 @@ class App extends React.Component<any, any> {
       colorArray.push(newColor);
     }
 
-    this.setState(() => ({ colorOptions: colorArray }));
+    this.setState(() => ({ colors: colorArray }));
   }
 
-  //  if options are updated, redraw the canvas
-  componentDidUpdate() {
-    this.draw();
-  }
+  // //  if options are updated, redraw the canvas
+  // componentDidUpdate() {
+  //   this.draw();
+  // }
 
   //  add a new option on to state and wheel
   addOption = (e: any) => {
@@ -56,49 +56,49 @@ class App extends React.Component<any, any> {
       options: [...this.state.options, 'take a break'],
     }));
 
-    setTimeout(this.draw, 100);
+    // setTimeout(this.draw, 100);
   };
 
-  handleKeyDown = (event: KeyboardEvent) => {
-    switch (event.keyCode) {
-      case 32: // space key
-        this.spinWheel();
-        break;
-      default:
-        break;
-    }
-  };
+  // handleKeyDown = (event: KeyboardEvent) => {
+  //   switch (event.keyCode) {
+  //     case 32: // space key
+  //       this.spinWheel();
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
 
   //  redraw the wheel, options, and picker
-  draw = ({ options, colorsOptions } = this.state): void => {
-    const canvas = document.querySelector('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth - 100;
-    canvas.height = window.innerHeight - 100;
+  // draw = ({ options, colorsOptions } = this.state): void => {
+  //   const canvas = document.querySelector('canvas');
+  //   const ctx = canvas.getContext('2d');
+  //   canvas.width = window.innerWidth - 100;
+  //   canvas.height = window.innerHeight - 100;
 
-    drawWheel(ctx);
-    drawPicker(canvas, ctx);
-    drawOptions(canvas, ctx, Object.values(options), colorsOptions);
-  };
+  //   drawWheel(ctx);
+  //   drawPicker(canvas, ctx);
+  //   drawOptions(canvas, ctx, Object.values(options), colorsOptions);
+  // };
 
   //  Update options with new value
   updateAppOptions = (optionName: string, optionValue: string): void => {
     const { options } = this.state;
     options[optionName] = optionValue;
     this.setState(() => ({ options }));
-    this.draw();
+    // this.draw();
   };
 
   //  redraws the wheel to make it appear to spin a minimum of 3+ seconds
-  spinWheel = ({ options, colors } = this.state): void => {
-    const canvas = document.querySelector('canvas');
-    const ctx = canvas.getContext('2d');
+  // spinWheel = ({ options, colors } = this.state): void => {
+  //   const canvas = document.querySelector('canvas');
+  //   const ctx = canvas.getContext('2d');
 
-    // was getting error line, cannot convert null or undefined to obj, hence if
-    if (this && options) {
-      spinWheel(canvas, ctx, Object.values(options), colors);
-    }
-  };
+  //   // was getting error line, cannot convert null or undefined to obj, hence if
+  //   if (this && options) {
+  //     spinWheel(canvas, ctx, Object.values(options), colors);
+  //   }
+  // };
 
   //  handle submission of form component to update options
   handleFormSubmit = (e: any, { options } = this.state): void => {
@@ -107,15 +107,15 @@ class App extends React.Component<any, any> {
     const formData = new FormData(form);
     const updatedOptions = [];
 
-    for (let i = 0; i < options.length; i++) {
+    for (let i = 0; i < options.length; i += 1) {
       updatedOptions.push(formData.get(i.toString()));
     }
 
     this.setState(() => ({ options: updatedOptions }));
-    this.draw();
+    // this.draw();:
   };
 
-  render({ options } = this.state) {
+  render({ options, colors } = this.state) {
     return (
       <>
         <Title title="Study Wheel" />
@@ -130,9 +130,7 @@ class App extends React.Component<any, any> {
             handleSubmit={this.handleFormSubmit}
           />
         </div>
-        <div className="canvas-holder">
-          <canvas className="canvas" />
-        </div>
+        <Canvas options={options} colors={colors} />
       </>
     );
   }
