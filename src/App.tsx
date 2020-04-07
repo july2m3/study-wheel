@@ -16,29 +16,28 @@ import {
   spinWheel,
 } from './canvasFunctions';
 
+// see this link: https://stackoverflow.com/questions/50630955/react-linter-warning-unused-state-field-while-the-state-field-is-being-used
 class App extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
       options: ['HTML/CSS', 'Vanilla JS', 'React', 'Node', 'Hackerrank'],
       colors: ['#3FB8AF', '#7FC7AF', '#DAD8A7', '#FF9E9D', '#FF3D7F'],
-      colorOptions: [],
+      colorOptions: [''],
     };
     this.updateAppOptions = this.updateAppOptions.bind(this);
   }
 
   //  set up space bar event handler and color pallete
-  componentDidMount() {
+  componentDidMount({ options, colors } = this.state) {
     document.addEventListener('keydown', this.handleKeyDown);
 
     //  color pallette from here https://codepen.io/dropside/pen/KkLaH
     const colorArray = [];
     let newColor = '';
 
-    for (let i = 0; i < this.state.options.length; i++) {
-      newColor = this.state.colors[
-        Math.floor(Math.random() * this.state.colors.length)
-      ];
+    for (let i = 0; i < options.length; i++) {
+      newColor = colors[Math.floor(Math.random() * colors.length)];
       colorArray.push(newColor);
     }
 
@@ -71,7 +70,7 @@ class App extends React.Component<any, any> {
   };
 
   //  redraw the wheel, options, and picker
-  draw = ({ options, colors } = this.state): void => {
+  draw = ({ options, colorsOptions } = this.state): void => {
     const canvas = document.querySelector('canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth - 100;
@@ -79,7 +78,7 @@ class App extends React.Component<any, any> {
 
     drawWheel(ctx);
     drawPicker(canvas, ctx);
-    drawOptions(canvas, ctx, Object.values(options), colors);
+    drawOptions(canvas, ctx, Object.values(options), colorsOptions);
   };
 
   //  Update options with new value
@@ -94,7 +93,9 @@ class App extends React.Component<any, any> {
   spinWheel = ({ options, colors } = this.state): void => {
     const canvas = document.querySelector('canvas');
     const ctx = canvas.getContext('2d');
-    if (this) {
+
+    // was getting error line, cannot convert null or undefined to obj, hence if
+    if (this && options) {
       spinWheel(canvas, ctx, Object.values(options), colors);
     }
   };
@@ -129,7 +130,7 @@ class App extends React.Component<any, any> {
             handleSubmit={this.handleFormSubmit}
           />
         </div>
-        <div className="canvas-holder" onClick={this.spinWheel}>
+        <div className="canvas-holder">
           <canvas className="canvas" />
         </div>
       </>

@@ -3,7 +3,13 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+  ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -18,13 +24,15 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
-    'react/jsx-filename-extension': [
-      1,
-      { extensions: ['.js', '.jsx', 'ts', 'tsx'] },
-    ],
+    'import/extension': 'off',
+    'react/jsx-filename-extension': [0],
   },
   settings: {
-    extensions: ['js', '.jsx', '.ts', '.tsx'],
-    moduleDirectory: ['node_modules', 'src/'],
+    'import/resolver': {
+      node: {
+        extensions: ['js', '.jsx', '.ts', '.tsx'],
+        moduleDirectory: ['src/'],
+      },
+    },
   },
 };
