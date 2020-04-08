@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/study-wheel/static/css/main.1bc5b445.chunk.css",
-    "main.js": "/study-wheel/static/js/main.9689fcb5.chunk.js",
-    "main.js.map": "/study-wheel/static/js/main.9689fcb5.chunk.js.map",
+    "main.js": "/study-wheel/static/js/main.2a6b9d37.chunk.js",
+    "main.js.map": "/study-wheel/static/js/main.2a6b9d37.chunk.js.map",
     "runtime-main.js": "/study-wheel/static/js/runtime-main.2a7b9098.js",
     "runtime-main.js.map": "/study-wheel/static/js/runtime-main.2a7b9098.js.map",
     "static/js/2.4b1b5b08.chunk.js": "/study-wheel/static/js/2.4b1b5b08.chunk.js",
     "static/js/2.4b1b5b08.chunk.js.map": "/study-wheel/static/js/2.4b1b5b08.chunk.js.map",
     "index.html": "/study-wheel/index.html",
-    "precache-manifest.ce3e7213698b50886520157716c7059f.js": "/study-wheel/precache-manifest.ce3e7213698b50886520157716c7059f.js",
+    "precache-manifest.705941a6fffd45b14aa841a29b487705.js": "/study-wheel/precache-manifest.705941a6fffd45b14aa841a29b487705.js",
     "service-worker.js": "/study-wheel/service-worker.js",
     "static/css/main.1bc5b445.chunk.css.map": "/study-wheel/static/css/main.1bc5b445.chunk.css.map",
     "static/js/2.4b1b5b08.chunk.js.LICENSE.txt": "/study-wheel/static/js/2.4b1b5b08.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.2a7b9098.js",
     "static/js/2.4b1b5b08.chunk.js",
     "static/css/main.1bc5b445.chunk.css",
-    "static/js/main.9689fcb5.chunk.js"
+    "static/js/main.2a6b9d37.chunk.js"
   ]
 }
