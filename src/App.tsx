@@ -15,7 +15,7 @@ class App extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      options: ['HTML/CSS', 'Vanilla JS', 'React', 'Node', 'Hackerrank'],
+      options: ['Website Layouts', 'Babel', 'WebPack', 'Redux', 'Testing'],
       colors: ['#3FB8AF', '#7FC7AF', '#DAD8A7', '#FF9E9D', '#FF3D7F'],
     };
     this.updateAppOptions = this.updateAppOptions.bind(this);
