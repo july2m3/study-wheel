@@ -4,14 +4,9 @@ export const drawWheel = (ctx: CanvasRenderingContext2D) => {
   const y: number = (window.innerHeight - 100) / 2;
   const size: number = y;
 
-  // ctx.strokeStyle = '#ffffff';
   ctx.arc(x, y, size, 0, Math.PI * 2, true);
   ctx.stroke();
 };
-
-// export const clearCanvas = (ctx: OffscreenCanvasRenderingContext2D) => {
-// ctx.clearRect(0, 0, canvas.width, canvas.height);
-// };
 
 export const drawPicker = (
   canvas: HTMLCanvasElement,
@@ -73,8 +68,6 @@ export const drawText = (
   const x: number = canvas.width / 2;
   const y: number = canvas.height / 2;
 
-  // let textColor = colors[Math.floor(Math.random() * 5)];
-  // ctx.fillStyle = '#ffffff';
   ctx.fillStyle = color;
 
   ctx.font = '24px serif';
