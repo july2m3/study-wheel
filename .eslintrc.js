@@ -24,8 +24,20 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
-    'import/extension': 'off',
+    'react/no-unused-state': 'off',
+    'import/no-unresolved': 'off',
     'react/jsx-filename-extension': [0],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    'no-plusplus': [2, { allowForLoopAfterthoughts: true }],
   },
   settings: {
     'import/resolver': {

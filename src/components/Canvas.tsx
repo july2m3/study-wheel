@@ -5,7 +5,7 @@ import {
   drawPicker,
   drawOptions,
   spinWheel,
-} from './canvasFunctions';
+} from '../canvasFunctions';
 
 class Canvas extends React.Component<any, any> {
   constructor(props) {

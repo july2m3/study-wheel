@@ -3,10 +3,10 @@ import React from 'react';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Collapse from './Collapse';
-import Title from './Title';
-import Form from './Form';
-import Canvas from './Canvas';
+import Collapse from './components/Collapse';
+import Title from './components/Title';
+import Form from './components/Form';
+import Canvas from './components/Canvas';
 
 import './styles.css';
 
